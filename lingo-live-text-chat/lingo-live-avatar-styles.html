@@ -1,0 +1,38 @@
+<dom-module id="lingo-live-avatar-styles">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+        border-radius: 50%;
+        width: var(--lingo-live-avatar-size);
+        height: var(--lingo-live-avatar-size);
+        line-height: var(--lingo-live-avatar-line-height, var(--lingo-live-avatar-size));
+        color: var(--lingo-live-avatar-color, inherit);
+        text-align: center;
+        text-transform: uppercase;
+        overflow: hidden;
+        position: relative;
+        background: var(--lingo-live-avatar-background-color, radial-gradient(circle at center, var(--lingo-color-white) 35%, var(--lingo-color-neutral-3) 95%));
+        border: 1px solid var(--lingo-live-avatar-background-color, var(--lingo-color-neutral-3));
+
+        --iron-image-width: 100%;
+        --iron-image-height: 100%;
+        --iron-image-placeholder: {
+          background-color: var(--lingo-live-avatar-background-color, #fff);
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 50%;
+        };
+      }
+
+      iron-image {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        bottom: -1px;
+        left: -1px;
+      }
+    </style>
+  </template>
+</dom-module>

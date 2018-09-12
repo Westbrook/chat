@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-text-chat test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../lingo-live-text-chat.html">
+    <link rel="import" href="../../lingo-live-styles/lingo-live-styles.html">
+  </head>
+  <body>
+    <test-fixture id="lingo-live-text-chat-tester">
+      <template>
+        <lingo-live-text-chat
+          identity="demoUser"
+          room-name="demoRoom"
+          room-type="openRooms"
+          api-key=""
+        ></lingo-live-text-chat>
+      </template>
+    </test-fixture>
+
+    <script>
+    document.addEventListener('WebComponentsReady', function() {
+      let bindStub = sinon.stub(LingoLiveTextChat.prototype, '_firestoreBind');
+      let resizeStub = sinon.stub(LingoLiveTextChat.prototype, 'notifyResize');
+      describe('lingo-live-text-chat', () => {
+        let element;
+
+        before(function() {
+          replace('firebase-app').with('fake-firebase-app');
+          replace('firebase-auth').with('fake-firebase-auth');
+        });
+
+        beforeEach(function() {
+          element = fixture('lingo-live-text-chat-tester');
+          element._skipNotificationsForTesting = true;
+        });
+
+        after(function() {
+          bindStub.restore();
+          resizeStub.restore();
+        });
+
+        a11ySuite('lingo-live-text-chat-tester');
+
+        it('Notifies of a message from remote users', (done) => {
+          let message = {
+            user: 'not local user',
+            success: true,
+          };
+          let selfMessage = {
+            user: 'demoUser',
+            success: false
+          }
+          element.addEventListener('lingo-live-message-notification', e => {
+            let notifiedMessage = e.detail.message;
+            assert.equal(notifiedMessage.success, true);
+            done();
+          });
+          let messages = [];
+          element._messagesChanged(messages, {path: ''});
+          messages.push(selfMessage);
+          element._messagesChanged(messages, {path: 'messages.splices'});
+          messages.push(message);
+          element._messagesChanged(messages, {path: 'messages.splices'});
+        });
+
+      });
+    });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-text-chat demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../lingo-live-text-chat.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        html {
+          --lingo-live-message-content-background-color: #ecf7f9;
+          --lingo-live-message-content-background-color-self: #00ce9b;
+          --lingo-live-message-actions-color: #777c80;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic lingo-live-text-chat demo</h3>
+      <demo-snippet>
+        <template>
+          <style>
+            lingo-live-text-chat {
+              min-height: 400px;
+            }
+          </style>
+          <lingo-live-text-chat
+            identity="testUser"
+            room-name="testRoom"
+          ></lingo-live-text-chat>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

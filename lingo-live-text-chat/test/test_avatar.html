@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-text-chat test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../lingo-live-avatar.html">
+    <link rel="import" href="../../lingo-live-styles/lingo-live-styles.html">
+  </head>
+  <body>
+    <test-fixture id="lingo-live-avatar-tester">
+      <template>
+        <lingo-live-avatar></lingo-live-avatar>
+      </template>
+    </test-fixture>
+
+    <script>
+      describe('lingo-live-avatar', () => {
+        let element;
+
+        a11ySuite('lingo-live-avatar-tester');
+
+        beforeEach(function() {
+          element = fixture('lingo-live-avatar-tester');
+        });
+
+        it('Processes initials correctly', () => {
+          assert.equal(element._initials({
+            firstName: 'demoUser'
+          }), 'd');
+          assert.equal(element._initials({
+            firstName: 'demo',
+            lastName: 'user'
+          }), 'du');
+          assert.equal(element._initials({
+            firstName: 'demo',
+            lastName: 'User'
+          }), 'dU');
+          assert.equal(element._initials({
+            firstName: 'Demo',
+            lastName: 'User'
+          }), 'DU');
+          assert.equal(element._initials({
+            firstName: 'Demo',
+            lastName: 'user'
+          }), 'Du');
+          assert.equal(element._initials({
+            firstName: ' Demo',
+            lastName: 'User'
+          }), 'DU');
+          assert.equal(element._initials({
+            firstName: 'Demo',
+            lastName: ' User'
+          }), 'DU');
+        });
+
+        it('Manages the title attribute', () => {
+          element.user = {
+            firstName: 'demoUser'
+          };
+          assert.equal(element.title, 'demoUser');
+          element.user = {
+            firstName: 'demo',
+            lastName: 'user'
+          };
+          assert.equal(element.title, 'demo user');
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

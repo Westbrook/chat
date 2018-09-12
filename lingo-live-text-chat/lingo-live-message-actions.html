@@ -1,0 +1,30 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../neon-animation/web-animations.html">
+<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../lingo-live-styles/lingo-live-icons.html">
+<link rel="import" href="lingo-live-message-actions-styles.html">
+
+<dom-module id="lingo-live-message-actions">
+  <template>
+    <style include="lingo-live-message-actions-styles"></style>
+    <button on-tap="_replyToMessage">
+      <iron-icon id="reply" icon="lingolive-icons:reply"></iron-icon>
+      [[message.replies]]
+      <paper-tooltip for="reply" offset="5">Reply</paper-tooltip>
+    </button>
+    <button on-tap="_repostMessage">
+      <iron-icon id="repost" icon="lingolive-icons:repeat"></iron-icon>
+      [[message.reposts]]
+      <paper-tooltip for="repost" offset="5">Repost</paper-tooltip>
+    </button>
+    <button on-tap="_likeMessage">
+      <iron-icon id="favorite" icon="lingolive-icons:favorite"></iron-icon>
+      [[message.likes]]
+      <paper-tooltip for="favorite" offset="5">Favorite</paper-tooltip>
+    </button>
+  </template>
+  <script src="lingo-live-message-actions.js"></script>
+</dom-module>

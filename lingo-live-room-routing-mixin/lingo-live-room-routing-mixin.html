@@ -1,0 +1,72 @@
+<link rel="import" href="../app-route/app-location.html">
+<link rel="import" href="../app-route/app-route.html">
+
+<script>
+/*
+ * Mixes routing scripts and DOM templating into a Polymer 2 element.
+ *
+ * @polymer
+ * @mixinFunction
+ */
+const lingoLiveRoomRoutingMixin = (superClass) => class extends superClass {
+  static get properties() {
+    return {
+      route: {
+        type: Object,
+        observer: '_routeChanged'
+      },
+      routeData: {
+        type: Object,
+        observer: '_routeDataChanged'
+      },
+      useHashAsPath: {
+        type: Boolean,
+        value: false
+      },
+      basePath: {
+        type: String,
+        value: ''
+      }
+    };
+  }
+  static get template() {
+    const html = Polymer.html;
+    return html`
+      ${superClass.template}
+      <app-location
+        route="{{route}}"
+        url-space-regex="^[[basePath]]"
+        use-hash-as-path="[[useHashAsPath]]"
+      ></app-location>
+      <app-route
+        route="{{route}}"
+        pattern="[[basePath]]/:roomName"
+        data="{{routeData}}"
+      ></app-route>
+    `;
+  }
+  _routeChanged() {
+    let identity = this.route.__queryParams.identity;
+    if (identity) {
+      this.identity = identity;
+      let newPathname = location.pathname;
+      let params = this.route.__queryParams;
+      let newParams = [];
+      for (let param in params) {
+        if (!params.hasOwnProperty(param)) continue;
+        if (param === 'identity') continue;
+
+        newParams.push(`${param}=${params[param]}`);
+      }
+      if (newParams.length) newPathname += `?${newParams.join('&')}`;
+      if (this.useHashAsPath && this.route.path) {
+        newPathname += `#${this.route.path}`;
+      }
+      history.replaceState({}, document.title, newPathname);
+    }
+  }
+  _routeDataChanged() {
+    this.roomName = this.routeData.roomName ? this.routeData.roomName : this.roomName || '';
+  }
+}
+</script>

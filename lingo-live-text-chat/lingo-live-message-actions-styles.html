@@ -1,0 +1,37 @@
+<dom-module id="lingo-live-message-actions-styles">
+  <template>
+    <style>
+      :host {
+        color: var(--lingo-live-message-actions-color, #092828);
+        border-radius: 7px;
+
+        @apply --layout;
+        @apply --layout-center-center;
+
+        --iron-icon-width: var(--lingo-live-message-actions-icon-size, 20px);
+        --iron-icon-height: var(--lingo-live-message-actions-icon-size, 20px);
+      }
+
+      button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0 14px;
+        color: var(--lingo-live-message-actions-color, #092828);
+
+        @apply --layout-vertical;
+        @apply --layout-center-center;
+      }
+
+      button:hover iron-icon {
+        color: #00c397;
+        mix-blend-mode: multiply;
+      }
+
+      button:hover #favorite {
+        color: #f21;
+        mix-blend-mode: unset;
+      }
+    </style>
+  </template>
+</dom-module>

@@ -1,0 +1,64 @@
+<dom-module id="lingo-live-write-message-styles">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+        overflow: hidden;
+
+        --iron-icon-width: var(--lingo-live-write-message-icon-size, 20px);
+        --iron-icon-height: var(--lingo-live-write-message-icon-size, 20px);
+        --paper-input-container-color: #d8dfdf;
+        --paper-input-container: {
+          position: relative;
+          padding: 0;
+        };
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+        --paper-input-container-input: {
+          border-width: 12px 37px 12px 17px;
+          border-style: solid;
+          border-color: transparent;
+          box-sizing: border-box;
+          line-height: 24px;
+        }
+      }
+
+      paper-textarea {
+        border-top: 1px solid #d8dfdf;
+        color: #d8dfdf;
+        top: 1px;
+        position: relative;
+        min-height: 48px;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      paper-textarea[focused] {
+        border-top: 1px solid #00c397;
+        color: #00c397;
+
+        --paper-input-container-focus-color: #00c397;
+      }
+
+      paper-icon-button {
+        position: absolute;
+        right: 0;
+        bottom: 24px;
+        transform: translateY(50%);
+        color: #d8dfdf;
+      }
+
+      paper-textarea[focused] + paper-icon-button {
+        color: #00c397;
+      }
+    </style>
+  </template>
+</dom-module>

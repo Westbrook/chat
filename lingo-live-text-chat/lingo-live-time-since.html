@@ -1,0 +1,15 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="time-elements.html">
+<link rel="import" href="lingo-live-time-since-styles.html">
+
+<dom-module id="lingo-live-time-since">
+  <template>
+    <style include="lingo-live-time-since-styles"></style>
+    <local-time
+      datetime$="[[datetime]]"
+      hour="numeric"
+      minute="numeric"
+    ></local-time>
+  </template>
+  <script src="lingo-live-time-since.js"></script>
+</dom-module>

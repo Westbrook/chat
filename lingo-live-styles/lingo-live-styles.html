@@ -1,0 +1,85 @@
+<link rel="import" href="lingo-live-colors.html">
+
+
+<custom-style>
+  <style is="custom-style">
+    html {
+      /* Font naming. */
+      --lingo-font-family-serif: 'Source Serif Pro', Georgia, serif;
+      --lingo-font-family-sans-serif: 'HK Grotesk', sans-serif;
+
+      /* Font maping to the Lingo Live style guide. */
+      --lingo-font-family-headline: var(--lingo-font-family-serif);
+      --lingo-font-family-subheadline: var(--lingo-font-family-serif);
+      --lingo-font-family-body: var(--lingo-font-family-sans-serif);
+
+      /* Typeography outlined by Lingo Live style guide. */
+      --lingo-font-size-body: 1em;
+      --lingo-font-size-subheadline: calc(var(--lingo-font-size-body) * 2);
+      --lingo-font-size-headline: calc(var(--lingo-font-size-subheadline) * 1.33);
+      --lingo-font-size-button: var(--lingo-font-size-body);
+      --lingo-transition: 0.3s ease-in-out;
+      --lingo-rhythm: 10px;
+      --lingo-spacing-body-copy: calc(var(--lingo-rhythm) * 1) 0 0 0;
+      --lingo-spacing-bullet-item-successive: calc(var(--lingo-rhythm) * 2.5) 0 0 0;
+
+      --lingo-full-width-content: {
+        width: 90vw;
+        max-width: 1200px;
+        margin: 0 auto;
+      };
+      --lingo-headline: {
+        font-family: var(--lingo-font-family-headline);
+        font-size: var(--lingo-font-size-headline);
+        line-height: 1;
+        margin: 0 0 0.8em;
+      };
+      --lingo-subheadline: {
+        font-family: var(--lingo-font-family-subheadline);
+        font-size: var(--lingo-font-size-subheadline);
+        line-height: 1;
+        margin: 0 0 0.8em;
+      };
+      --lingo-body-copy: {
+        font-family: var(--lingo-font-family-body);
+        font-size: var(--lingo-font-size-body);
+        margin: var(--lingo-spacing-body-copy);
+        font-weight: normal;
+        line-height: 1.5;
+      };
+      --lingo-bullet-line: {
+        display: inline;
+        padding-bottom: 1px;
+        border-bottom: 3px solid var(--lingo-color-black);
+      };
+      --lingo-bullet-copy: {
+        font-family: var(--lingo-font-family-subheadline);
+        padding: 0;
+        line-height: 2.1;
+
+        @apply --lingo-bullet-line;
+      };
+      --lingo-bullet-item: {
+        padding: var(--lingo-spacing-body-copy);
+      };
+      --lingo-bullet-item-successive: {
+        padding: var(--lingo-spacing-bullet-item-successive);
+      };
+    }
+
+    html {
+      font-size: calc(14px + (18 - 14) * (100vw - 400px) / (2000 - 400));
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--lingo-font-family-body);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  </style>
+</custom-style>

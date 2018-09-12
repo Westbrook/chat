@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-video-chat test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../lingo-live-text-chat-routed.html">
+    <link rel="import" href="../../lingo-live-styles/lingo-live-styles.html">
+  </head>
+  <body>
+    <test-fixture id="lingo-live-text-chat-tester">
+      <template>
+        <lingo-live-text-chat
+          use-hash-as-path
+          room-type="openRooms"
+          api-key=""
+        ></lingo-live-text-chat>
+      </template>
+    </test-fixture>
+
+    <script>
+    document.addEventListener('WebComponentsReady', function() {
+      let bindStub = sinon.stub(LingoLiveTextChat.prototype, '_firestoreBind');
+      let resizeStub = sinon.stub(LingoLiveTextChat.prototype, 'notifyResize');
+      describe('lingo-live-text-chat', () => {
+        let element;
+        let defaultURL = `${location.pathname +
+          (!!location.search ? location.search : '?')}`;
+
+        before(function() {
+          replace('firebase-app').with('fake-firebase-app');
+          replace('firebase-auth').with('fake-firebase-auth');
+        });
+
+        beforeEach(function() {
+          element = fixture('lingo-live-text-chat-tester');
+          element._skipNotificationsForTesting = true;
+        });
+
+        afterEach(function() {
+          history.pushState(
+            {},
+            'Routed URL',
+            defaultURL
+          );
+          window.dispatchEvent(new CustomEvent('location-changed'));
+        });
+
+        after(function() {
+          bindStub.restore();
+          resizeStub.restore();
+        });
+
+        a11ySuite('lingo-live-text-chat-tester');
+
+        it('URL vars are consumed correctly', (done) => {
+          element.addEventListener('identity-changed', _ => {
+            tests += 1;
+            assert.equal(element.identity, testUser);
+            if (tests == 2) {
+              return done();
+            }
+            testUser = 'secondUser';
+            goToPage();
+          });
+          let testUser = 'testUser';
+          let tests = 0;
+          let goToPage = function() {
+            history.pushState(
+              {},
+              'Routed URL',
+              `${defaultURL}&identity=${testUser}`
+            );
+            window.dispatchEvent(new CustomEvent('location-changed'));
+          }
+          requestAnimationFrame(_=>{
+            goToPage();
+          });
+        });
+
+        it('Routing is consumed correctly', (done) => {
+          element.addEventListener('room-name-changed', _ => {
+            tests += 1;
+            assert.equal(element.roomName, testRoom);
+            if (tests == 2) {
+              return done();
+            }
+            testRoom = 'secondRoom';
+            goToPage();
+          });
+          element.identity = 'testUser';
+          let testRoom = 'testRoom';
+          let tests = 0;
+          let goToPage = function() {
+            history.pushState(
+              {},
+              'Routed URL',
+              `${defaultURL}#/text/${testRoom}`
+            );
+            window.dispatchEvent(new CustomEvent('location-changed'));
+          }
+          requestAnimationFrame(_=>{
+            goToPage();
+          });
+        });
+
+        it('URL vars and routing are concurrently consumed correctly', (done) => {
+          let destinationRoomName = 'testRoom';
+          let destinationIdentity = 'testUser';
+          let roomNameChanges = 0;
+          let identityChanges = 0;
+          function updateRoute(roomName, identity) {
+            history.pushState(
+              {},
+              'Routed URL',
+              `${defaultURL}&identity=${identity}#/text/${roomName}`
+            );
+            window.dispatchEvent(new CustomEvent('location-changed'));
+          }
+          function checkComplete() {
+            if (identityChanges > 1 && roomNameChanges > 1) done();
+            else if (identityChanges && roomNameChanges) {
+              destinationRoomName = 'secondRoom';
+              destinationIdentity = 'secondUser';
+              updateRoute(destinationRoomName, destinationIdentity);
+            }
+          }
+          element.addEventListener('room-name-changed', _ => {
+            roomNameChanges++;
+            assert.equal(element.roomName, destinationRoomName);
+            checkComplete();
+          });
+          element.addEventListener('identity-changed', _ => {
+            identityChanges++;
+            assert.equal(element.identity, destinationIdentity);
+            checkComplete();
+          });
+          updateRoute(destinationRoomName, destinationIdentity);
+        });
+
+      });
+    });
+    </script>
+
+  </body>
+</html>

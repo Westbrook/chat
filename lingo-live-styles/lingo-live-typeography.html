@@ -1,0 +1,27 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="lingo-live-typeography">
+  <template>
+    <style>
+      h1, h2, h3, h4 {
+        margin: 0;
+        font-family: var(--lingo-font-family-headline);
+      }
+      p {
+        @apply --lingo-body-copy;
+      }
+      p + h1,
+      p + h2,
+      p + h3,
+      p + h4 {
+        padding: calc(var(--lingo-rhythm) * 2) 0 0 0;
+      }
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </template>
+</dom-module>

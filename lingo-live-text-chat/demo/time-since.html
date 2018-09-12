@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-text-chat demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../lingo-live-time-since.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        html {
+          --lingo-live-message-content-background-color: #ecf7f9;
+          --lingo-live-message-content-background-color-self: #00ce9b;
+          --lingo-live-message-actions-color: #777c80;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Time since page load demo</h3>
+      <demo-snippet>
+        <template>
+          <lingo-live-time-since
+            id="time-since-load"
+          ></lingo-live-time-since>
+          <script>
+            let timeLoad = document.querySelector('#time-since-load');
+            timeLoad.timestamp = Date.now();
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Time since I was born demo</h3>
+      <demo-snippet>
+        <template>
+          <lingo-live-time-since
+            id="time-since-born"
+          ></lingo-live-time-since>
+          <script>
+            let timeBorn = document.querySelector('#time-since-born');
+            timeBorn.timestamp = 452477100000;
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

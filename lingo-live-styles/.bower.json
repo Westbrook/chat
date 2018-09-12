@@ -1,0 +1,53 @@
+{
+  "name": "lingo-live-styles",
+  "author": "Westbrook Johnson",
+  "version": "0.0.8",
+  "description": "Provides shared style, mixings, colors, and custom properties to abide by Lingo Live style guides.",
+  "private": true,
+  "license": "https://github.com/lingolive/lingo-live-styles/LICENSE",
+  "homepage": "https://github.com/lingolive/lingo-live-styles",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lingolive/lingo-live-styles.git"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "iron-icon": "polymerelements/iron-icon#^2.0.1",
+    "iron-iconset-svg": "polymerelements/iron-iconset-svg#^2.1.0"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
+    "iron-component-page": "polymerelements/iron-component-page#^3.0.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "demo",
+    "config",
+    "implementation",
+    ".travis.yml",
+    ".github",
+    "wtc.conf.json",
+    "gulpfile.js",
+    "yarn-error.log",
+    "analysis.json",
+    "index.html",
+    "README.md",
+    "package.json",
+    "package-lock.json",
+    "yarn.lock"
+  ],
+  "_release": "0.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.8",
+    "commit": "a21b94ac1c38e6bf36e8cdfa2c4f4c527d727458"
+  },
+  "_source": "https://github.com/lingolive/lingo-live-styles.git",
+  "_target": "~0.0.2",
+  "_originalSource": "lingolive/lingo-live-styles"
+}

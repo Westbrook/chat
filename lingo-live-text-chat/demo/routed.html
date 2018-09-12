@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-text-chat demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../lingo-live-styles/lingo-live-styles.html">
+    <link rel="import" href="../lingo-live-text-chat-routed.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        @font-face{font-family:Apercu;font-weight:400;src:url("https://www.lingolive.com/fonts/apercu-light.otf") format("opentype")}@font-face{font-family:Apercu;font-weight:700;src:url("https://www.lingolive.com/fonts/apercu-light.otf") format("opentype")}@font-face{font-family:TiemposBold;font-weight:700;src:url("https://assets.lingolive.com/assets/TiemposText-Semibold.otf") format("opentype")}@font-face{font-family:TiemposItalic;font-weight:700;src:url("https://assets.lingolive.com/assets/TiemposText-SemiboldItalic.otf") format("opentype")}
+        body {
+          font-family: Apercu, sans-serif;
+          font-size: calc(14px + (18 - 14) * (100vw - 400px) / (2000 - 400));
+        }
+        h1, h2, h3, h4, h5, h6 {
+          font-family: TiemposBold, serif;
+        }
+
+        html {
+          --lingo-live-message-content-background-color: transparent;
+          --lingo-live-message-content-background-color-self: transparent;
+          --lingo-live-message-actions-color: #777c80;
+          --lingo-live-avatar-background-color: #08ce9b;
+          --lingo-live-avatar-color: #fff;
+          --lingo-live-avatar-line-height: 38px;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic routed lingo-live-text-chat demo</h3>
+      <p>Visit this page <a target="_parent" href="../demo/routed.html?identity=demoUser#/text/demoRoom"> here</a> to experience the routing.</p>
+      <demo-snippet>
+        <template>
+          <style>
+            lingo-live-text-chat {
+              height: 80vh;
+              max-height: 500px;
+            }
+          </style>
+          <lingo-live-text-chat
+            use-hash-as-path
+            show-self
+            room-type="openRooms"
+          ></lingo-live-text-chat>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

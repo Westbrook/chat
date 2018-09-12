@@ -1,0 +1,31 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-list/iron-list.html">
+<link rel="import" href="lingo-live-message.html">
+<link rel="import" href="lingo-live-write-message.html">
+<link rel="import" href="lingo-live-text-chat-styles.html">
+
+<dom-module id="lingo-live-text-chat">
+  <template>
+    <style include="lingo-live-text-chat-styles"></style>
+    <iron-list id="messagesList" items="[[messages]]" as="message">
+      <template>
+        <lingo-live-message
+          message="[[message]]"
+          avatar="[[avatar]]"
+          user="[[_getUser(message.user, users, users.*)]]"
+          self="[[_isCurrentUser(message.user, user, showSelf)]]"
+          on-lingo-live-link-click="_linkAction"
+          same-day="[[_isSameDay(index)]]"
+        ></lingo-live-message>
+      </template>
+    </iron-list>
+    <lingo-live-write-message
+      id="write"
+      on-lingo-live-new-message="_prepNewMessage"
+      on-lingo-live-report="_addRoomType"
+    ></lingo-live-write-message>
+  </template>
+  <script src="lingo-live-text-chat-base.js"></script>
+</dom-module>

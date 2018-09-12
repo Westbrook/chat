@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>lingo-live-text-chat demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../lingo-live-message.html">
+    <link rel="import" href="../../lingo-live-styles/lingo-live-styles.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        html {
+          --lingo-live-message-content-background-color: #ecf7f9;
+          --lingo-live-message-content-background-color-self: #00ce9b;
+          --lingo-live-message-actions-color: #777c80;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic lingo-live-message demo</h3>
+      <demo-snippet>
+        <template>
+          <lingo-live-message
+            message='{"likes":0,"message":"what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message?","replies":0,"reposts":0,"room":"westbrook","ts":1511236279828,"user":"westbrook","$key":"1511236279828"}'
+          ></lingo-live-message>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Avatar lingo-live-message demo</h3>
+      <demo-snippet>
+        <template>
+          <lingo-live-message
+            avatar
+            message='{"likes":0,"message":"what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message?","replies":0,"reposts":0,"room":"westbrook","ts":1511236279828,"user":"westbrook","$key":"1511236279828"}'
+          ></lingo-live-message>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Self lingo-live-message with avatar demo</h3>
+      <demo-snippet>
+        <template>
+          <lingo-live-message
+            self
+            avatar
+            message='{"likes":0,"message":"what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message?","replies":0,"reposts":0,"room":"westbrook","ts":1511236279828,"user":"westbrook","$key":"1511236279828"}'
+          ></lingo-live-message>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+      <h3>Self lingo-live-message demo</h3>
+      <demo-snippet>
+        <template>
+          <lingo-live-message
+            self
+            message='{"likes":0,"message":"what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message? what does it look like when there is a really long message?","replies":0,"reposts":0,"room":"westbrook","ts":1511236279828,"user":"westbrook","$key":"1511236279828"}'
+          ></lingo-live-message>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

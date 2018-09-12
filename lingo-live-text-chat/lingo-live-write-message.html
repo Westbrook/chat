@@ -1,0 +1,24 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../paper-input/paper-textarea.html">
+<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../lingo-live-styles/lingo-live-icons.html">
+<link rel="import" href="lingo-live-write-message-styles.html">
+
+<dom-module id="lingo-live-write-message">
+  <template>
+    <style include="lingo-live-write-message-styles"></style>
+    <paper-textarea
+      id="input"
+      no-label-float
+      placeholder="Type your message here"
+      value="{{message}}"
+    ></paper-textarea>
+    <paper-icon-button
+      icon="lingolive-icons:send"
+      on-click="_shouldSubmitMessage"
+      on-transitionend="_testSubmitMessage"
+    ></paper-icon-button>
+  </template>
+  <script src="lingo-live-write-message.js"></script>
+</dom-module>

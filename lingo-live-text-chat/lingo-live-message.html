@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../marked-element/marked-element.html">
+<link rel="import" href="time-elements.html">
+<link rel="import" href="lingo-live-time-since-styles.html">
+<link rel="import" href="lingo-live-avatar.html">
+<link rel="import" href="lingo-live-user-readable.html">
+<link rel="import" href="lingo-live-time-since.html">
+<link rel="import" href="lingo-live-message-content.html">
+<link rel="import" href="lingo-live-message-styles.html">
+
+<dom-module id="lingo-live-message">
+  <template>
+    <style include="lingo-live-message-styles"></style>
+    <local-time
+      datetime$="[[_datetime(message.ts)]]"
+      month="short"
+      day="numeric"
+      year="numeric"
+      hidden$="[[sameDay]]"
+    ></local-time>
+    <lingo-live-avatar
+      id="avatar"
+      user="[[_displayUser(user, message.user)]]"
+      hidden$="[[_hideAvatar(self, avatar)]]"
+    ></lingo-live-avatar>
+    <div class="post-card">
+      <lingo-live-user-readable user="[[_displayUser(user, message.user)]]"></lingo-live-user-readable>
+      <lingo-live-time-since timestamp="[[message.ts]]"></lingo-live-time-since>
+      <lingo-live-message-content>
+        <div slot="content" class="content">
+          <marked-element
+            markdown="[[message.message]]"
+            on-click="_handleClick"
+            sanitize
+            breaks
+          >
+            <div slot="markdown-html"></div>
+          </marked-element>
+        </div>
+        <div slot="media" hidden$="[[!message.attachment]]" class="media"></div>
+      </lingo-live-message-content>
+    </div>
+  </template>
+  <script src="lingo-live-message.js"></script>
+</dom-module>

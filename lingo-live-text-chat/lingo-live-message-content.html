@@ -1,0 +1,13 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="lingo-live-message-content-styles.html">
+
+<dom-module id="lingo-live-message-content">
+  <template>
+    <style include="lingo-live-message-content-styles"></style>
+    <div class="content">
+      <slot name="content"></slot>
+      <slot name="media"></slot>
+    </div>
+  </template>
+  <script src="lingo-live-message-content.js"></script>
+</dom-module>
